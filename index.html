@@ -36,6 +36,8 @@
   .tag b{color:#f2b53a}
   .meta{margin-top:10px;font-size:13px;color:rgba(245,239,227,.75)}
   .meta a{color:#f5efe3}
+  .follow{margin-top:10px;display:inline-block;background:rgba(242,181,58,.15);border:1px solid rgba(242,181,58,.5);border-radius:8px;padding:4px 10px;font-size:14px}
+  .follow b{color:#f2b53a}
   .controls{background:var(--bg);border-bottom:1px solid var(--line);padding:12px 0}
   @media (min-width:760px){.controls{position:sticky;top:0;z-index:5}}
   .search{width:100%;padding:10px 12px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink)}
@@ -79,6 +81,7 @@
     <h1>拿钱出国</h1>
     <p class="tag">不是你花钱去留学，是你<b>拿钱</b>去留学。</p>
     <div class="meta"><span id="total">…</span> · 只引各国政府和官方机构原文 · 数字截至 2026 年 10 月 · <a href="https://github.com/BeckyGlobal/PaidToStudyAbroad">GitHub 仓库</a></div>
+    <div class="follow">关注作者：微信视频号 <b>Becky在地球村</b></div>
   </div>
 </header>
 
@@ -100,13 +103,14 @@
   <div id="list"></div>
   <footer>
     来源只引各国政府、政府机构和使领馆、法律原文、公立大学官网，以及政府委托或出资运营的项目官网。奖学金和签证政策每年都改，申请前请照每条的来源链接再查一遍。<br>
+    想看更多出国路径和海外生活，关注微信视频号「Becky在地球村」。<br>
     本指南不是法律、移民或财务意见。正文按 CC BY 4.0 发布。灵感来自《高性价比人生指南》（eternity4719），本站是读者做的非官方衍生作品。
   </footer>
 </main>
 
 <script>
 (function(){
-  var FILES=['01-学手艺有人给钱.md','02-学费低或不要学费.md','03-政府全奖.md','04-读博就是上班.md'];
+  var FILES=['01-学手艺有人给钱.md','02-学费低或不要学费.md','03-政府全奖.md','04-读博就是上班.md','05-美国奖学金.md','06-加拿大奖学金.md','07-澳大利亚奖学金.md'];
   var COUNTRIES=[
     ['加拿大',['加拿大','魁北克']],['德国',['德国','DAAD']],['奥地利',['奥地利','FWF']],['日本',['日本','大阪','冈山','宫崎','三重','JASSO','文部科学省','EJU']],
     ['捷克',['捷克']],['波兰',['波兰']],['匈牙利',['匈牙利']],['法国',['法国','埃菲尔']],['意大利',['意大利']],['新加坡',['新加坡']],
@@ -159,6 +163,7 @@
       var base=clean(it.title+' '+it.plain); if(/^别/.test(it.title)) base+=' '+clean(it.gain);
       it.cty=COUNTRIES.filter(function(c){return c[1].some(function(k){return base.indexOf(k)>=0;});}).map(function(c){return c[0];});
       if(!it.cty.length){var h2=clean(hay); it.cty=COUNTRIES.filter(function(c){return c[1].some(function(k){return h2.indexOf(k)>=0;});}).map(function(c){return c[0];}).slice(0,3);}
+      var SC={5:'美国',6:'加拿大',7:'澳大利亚'}; if(SC[sn] && it.cty.indexOf(SC[sn])<0) it.cty.unshift(SC[sn]);
       items.push(it);
     });
   }
