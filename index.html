@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>拿钱出国 · 在线检索</title>
+<meta name="description" content="高性价比人生指南·海外版：拿钱出国。不是你花钱去留学，是你拿钱去留学。按国家、证据等级、花不花钱筛选全部条目。">
+<meta property="og:image" content="og.png">
+<style>
+  :root{
+    --bg:#f7f4ee; --panel:#ffffff; --ink:#1d2a33; --muted:#5d6b75; --line:#e3ddd2;
+    --accent:#0f2a3d; --gold:#c98a10; --gold-bg:#fbf1dc; --chip:#eef1f3; --chip-on:#0f2a3d; --chip-on-ink:#fff;
+    --a:#18794e; --b:#915930;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f1a22; --panel:#16232d; --ink:#e7edf1; --muted:#9aaab5; --line:#263744;
+      --accent:#f2b53a; --gold:#f2b53a; --gold-bg:#2a2410; --chip:#1f2f3b; --chip-on:#f2b53a; --chip-on-ink:#0f1a22;
+      --a:#4cc38a; --b:#d79a6a;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f1a22; --panel:#16232d; --ink:#e7edf1; --muted:#9aaab5; --line:#263744;
+    --accent:#f2b53a; --gold:#f2b53a; --gold-bg:#2a2410; --chip:#1f2f3b; --chip-on:#f2b53a; --chip-on-ink:#0f1a22;
+    --a:#4cc38a; --b:#d79a6a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif}
+  a{color:inherit}
+  header{background:#0f2a3d;color:#f5efe3;padding:28px 16px 24px}
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px}
+  header .wrap{padding:0}
+  .kicker{color:#f2b53a;font-weight:700;letter-spacing:2px;font-size:14px}
+  h1{margin:4px 0 6px;font-size:30px;line-height:1.25}
+  .tag{font-size:17px;margin:0}
+  .tag b{color:#f2b53a}
+  .meta{margin-top:10px;font-size:13px;color:rgba(245,239,227,.75)}
+  .meta a{color:#f5efe3}
+  .controls{background:var(--bg);border-bottom:1px solid var(--line);padding:12px 0}
+  @media (min-width:760px){.controls{position:sticky;top:0;z-index:5}}
+  .search{width:100%;padding:10px 12px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink)}
+  .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+  .row .lab{font-size:13px;color:var(--muted);width:4.5em;flex:none}
+  .chip{border:0;background:var(--chip);color:var(--ink);padding:4px 11px;border-radius:999px;font-size:14px;cursor:pointer;line-height:1.6}
+  .chip[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-ink)}
+  .more{display:none}
+  .controls.open .more{display:flex}
+  .toggle{margin-top:8px;font-size:13px;background:none;border:0;color:var(--muted);cursor:pointer;padding:0;text-decoration:underline}
+  .count{margin:16px 0 8px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+  .count button{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:14px;padding:0}
+  .sec-h{margin:26px 0 8px;font-size:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+  .card h3{margin:0;font-size:17px;line-height:1.45}
+  .num{color:var(--gold);font-weight:700;margin-right:6px;font-variant-numeric:tabular-nums}
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .bd{font-size:12px;padding:1px 8px;border-radius:6px;background:var(--chip);color:var(--muted)}
+  .bd.A{background:var(--a);color:#fff}.bd.B{background:var(--b);color:#fff}
+  .plain{background:var(--gold-bg);border-left:3px solid var(--gold);padding:8px 12px;border-radius:6px;margin:8px 0}
+  details{margin-top:6px}
+  summary{cursor:pointer;color:var(--muted);font-size:14px}
+  .f{margin:8px 0}
+  .f b{display:inline-block;min-width:4.5em;color:var(--muted);font-weight:600}
+  .f a{word-break:break-all}
+  .empty{padding:40px 0;text-align:center;color:var(--muted)}
+  footer{color:var(--muted);font-size:13px;padding:30px 0 50px}
+  .theme{position:absolute;right:16px;top:14px;background:none;border:1px solid rgba(245,239,227,.4);color:#f5efe3;border-radius:8px;font-size:13px;padding:2px 8px;cursor:pointer}
+  header{position:relative}
+</style>
+</head>
+<body>
+<header>
+  <button class="theme" id="theme" type="button" aria-label="切换深色或浅色">深/浅</button>
+  <div class="wrap">
+    <div class="kicker">高性价比人生指南 · 海外版</div>
+    <h1>拿钱出国</h1>
+    <p class="tag">不是你花钱去留学，是你<b>拿钱</b>去留学。</p>
+    <div class="meta"><span id="total">…</span> · 只引各国政府和官方机构原文 · 数字截至 2026 年 10 月 · <a href="https://github.com/BeckyGlobal/PaidToStudyAbroad">GitHub 仓库</a></div>
+  </div>
+</header>
+
+<div class="controls" id="controls">
+  <div class="wrap">
+    <input class="search" id="q" type="search" placeholder="搜关键词：护理、德国、奖学金、免学费、博士……" aria-label="搜索">
+    <div class="row" id="r-sec"><span class="lab">看哪节</span></div>
+    <div class="row" id="r-cty"><span class="lab">国家地区</span></div>
+    <div class="row more" id="r-ev"><span class="lab">证据等级</span></div>
+    <div class="row more" id="r-money"><span class="lab">要花钱吗</span></div>
+    <div class="row more" id="r-grit"><span class="lab">要毅力吗</span></div>
+    <div class="row more" id="r-gain"><span class="lab">收益大小</span></div>
+    <button class="toggle" id="toggle" type="button">更多筛选</button>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="count"><span id="count"></span><button id="reset" type="button">清空筛选</button></div>
+  <div id="list"></div>
+  <footer>
+    来源只引各国政府、政府机构和使领馆、法律原文、公立大学官网，以及政府委托或出资运营的项目官网。奖学金和签证政策每年都改，申请前请照每条的来源链接再查一遍。<br>
+    本指南不是法律、移民或财务意见。正文按 CC BY 4.0 发布。灵感来自《高性价比人生指南》（eternity4719），本站是读者做的非官方衍生作品。
+  </footer>
+</main>
+
+<script>
+(function(){
+  var FILES=['01-学手艺有人给钱.md','02-学费低或不要学费.md','03-政府全奖.md','04-读博就是上班.md'];
+  var COUNTRIES=[
+    ['加拿大',['加拿大','魁北克']],['德国',['德国','DAAD']],['奥地利',['奥地利','FWF']],['日本',['日本','大阪','冈山','宫崎','三重','JASSO','文部科学省','EJU']],
+    ['捷克',['捷克']],['波兰',['波兰']],['匈牙利',['匈牙利']],['法国',['法国','埃菲尔']],['意大利',['意大利']],['新加坡',['新加坡']],
+    ['荷兰',['荷兰']],['瑞典',['瑞典']],['丹麦',['丹麦']],['挪威',['挪威']],['芬兰',['芬兰']],['瑞士',['瑞士']],
+    ['英国',['英国','志奋领']],['爱尔兰',['爱尔兰']],['韩国',['韩国','GKS']],['土耳其',['土耳其']],['澳大利亚',['澳大利亚']],
+    ['美国',['美国','富布赖特']],['新西兰',['新西兰','Manaaki']],['中国香港',['香港']],['欧盟',['欧盟','伊拉斯谟','玛丽居里']],['国家公派',['国家公派','CSC']]
+  ];
+  var state={q:'',sec:null,cty:null,ev:null,money:null,grit:null,gain:null};
+  var items=[], sections=[];
+
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function inline(s){
+    var out=esc(s);
+    out=out.replace(/&lt;(https?:\/\/[^\s&]+?)&gt;/g,function(m,u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});
+    out=out.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+    out=out.replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');
+    out=out.replace(/`([^`]+)`/g,'<code>$1</code>');
+    return out;
+  }
+  function parse(md,file){
+    var secM=md.match(/^# (\d+)\. (.+)$/m); if(!secM) return;
+    var sn=+secM[1], st=secM[2];
+    sections.push({n:sn,title:st});
+    var blocks=md.split(/^(?=### \d+\. )/m).slice(1);
+    blocks.forEach(function(b){
+      var h=b.match(/^### (\d+)\. (.+)$/m); if(!h) return;
+      var tag={}; var tm=b.match(/成本标签:([^>]*)-->/);
+      if(tm){tm[1].trim().split(/\s+/).forEach(function(kv){var p=kv.split('=');if(p.length===2)tag[p[0]]=p[1];});}
+      var fields={}, order=[];
+      b.split('\n').forEach(function(line){
+        var m=line.match(/^- ([^：]{1,40})：(.*)$/);
+        if(m){var k=m[1].replace(/（.*$/,''); fields[k]=line.replace(/^- /,''); order.push(k);}
+      });
+      var get=function(k){var v=fields[k]||''; return v.replace(/^[^：]+：/,'');};
+      var it={sec:sn,secTitle:st,n:+h[1],id:sn+'.'+h[1],title:h[2],tag:tag,fields:fields,
+        plain:get('说人话'),cost:get('成本'),gain:fields['收益']?fields['收益'].replace(/^收益/,'').replace(/^：/,''):'',
+        ev:(get('证据等级').match(/[ABC]/)||[''])[0],src:get('来源'),note:get('备注'),file:file,
+        gainLabel:(fields['收益']||'').match(/^收益(（[^）]*）)?/)};
+      var hay=(it.title+' '+it.plain+' '+it.cost+' '+it.gain+' '+it.note);
+      it.hay=hay.toLowerCase();
+      var clean=function(x){return x.replace(/非欧盟|欧盟以外|欧盟外/g,'');};
+      var base=clean(it.title+' '+it.plain); if(/^别/.test(it.title)) base+=' '+clean(it.gain);
+      it.cty=COUNTRIES.filter(function(c){return c[1].some(function(k){return base.indexOf(k)>=0;});}).map(function(c){return c[0];});
+      if(!it.cty.length){var h2=clean(hay); it.cty=COUNTRIES.filter(function(c){return c[1].some(function(k){return h2.indexOf(k)>=0;});}).map(function(c){return c[0];}).slice(0,3);}
+      items.push(it);
+    });
+  }
+  function chipRow(id,opts,key){
+    var row=document.getElementById(id);
+    opts.forEach(function(o){
+      var b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=o[1]; b.setAttribute('aria-pressed','false');
+      b.addEventListener('click',function(){state[key]=(state[key]===o[0])?null:o[0]; sync(); render();});
+      b.dataset.key=key; b.dataset.val=o[0]; row.appendChild(b);
+    });
+  }
+  function sync(){
+    document.querySelectorAll('.chip').forEach(function(b){b.setAttribute('aria-pressed',String(state[b.dataset.key]===b.dataset.val));});
+    try{ var h=[]; ['sec','cty','ev','money','grit','gain'].forEach(function(k){if(state[k]!==null)h.push(k+'='+encodeURIComponent(state[k]));}); if(state.q)h.push('q='+encodeURIComponent(state.q)); history.replaceState(null,'',h.length?'#'+h.join('&'):location.pathname);}catch(e){}
+  }
+  function match(it){
+    if(state.sec!==null && String(it.sec)!==state.sec) return false;
+    if(state.cty!==null && it.cty.indexOf(state.cty)<0) return false;
+    if(state.ev!==null && it.ev!==state.ev) return false;
+    if(state.money!==null && it.tag['钱']!==state.money) return false;
+    if(state.grit!==null && it.tag['毅力']!==state.grit) return false;
+    if(state.gain!==null && it.tag['收益']!==state.gain) return false;
+    if(state.q){ var ws=state.q.toLowerCase().split(/\s+/).filter(Boolean); for(var i=0;i<ws.length;i++){ if(it.hay.indexOf(ws[i])<0 && it.cty.join(' ').toLowerCase().indexOf(ws[i])<0) return false; } }
+    return true;
+  }
+  var MONEY={'0':'不花钱','少':'花少量钱','多':'要花较多钱'}, GRIT={'否':'不费毅力','些':'要一点毅力','是':'要长期坚持'}, TIME={'少':'用时少','中':'用时中等','多':'用时长'};
+  function card(it){
+    var d=document.createElement('article'); d.className='card'; d.id='i'+it.id;
+    var bd='<span class="bd '+it.ev+'">证据 '+it.ev+'</span>';
+    if(it.tag['钱'])bd+='<span class="bd">'+(MONEY[it.tag['钱']]||it.tag['钱'])+'</span>';
+    if(it.tag['时间'])bd+='<span class="bd">'+(TIME[it.tag['时间']]||it.tag['时间'])+'</span>';
+    if(it.tag['毅力'])bd+='<span class="bd">'+(GRIT[it.tag['毅力']]||it.tag['毅力'])+'</span>';
+    if(it.tag['收益'])bd+='<span class="bd">收益'+it.tag['收益']+'</span>';
+    it.cty.forEach(function(c){bd+='<span class="bd">'+c+'</span>';});
+    var gl=it.gainLabel&&it.gainLabel[1]?it.gainLabel[1]:'';
+    d.innerHTML='<h3><span class="num">'+it.id+'</span>'+inline(it.title)+'</h3>'+
+      '<div class="badges">'+bd+'</div>'+
+      (it.plain?'<div class="plain">'+inline(it.plain)+'</div>':'')+
+      '<details><summary>看成本、官方规定、绳子和来源</summary>'+
+      '<div class="f"><b>成本</b>'+inline(it.cost)+'</div>'+
+      '<div class="f"><b>收益'+esc(gl)+'</b>'+inline(it.gain)+'</div>'+
+      '<div class="f"><b>备注</b>'+inline(it.note)+'</div>'+
+      '<div class="f"><b>来源</b>'+inline(it.src)+'</div>'+
+      '<div class="f"><a href="https://github.com/BeckyGlobal/PaidToStudyAbroad/blob/main/book/'+encodeURIComponent(it.file)+'" target="_blank" rel="noopener">在 GitHub 上看这一节原文</a></div>'+
+      '</details>';
+    return d;
+  }
+  function render(){
+    var list=document.getElementById('list'); list.innerHTML='';
+    var shown=items.filter(match);
+    document.getElementById('count').textContent='显示 '+shown.length+' / '+items.length+' 条';
+    if(!shown.length){list.innerHTML='<div class="empty">没有符合条件的条目，试试少选一个条件。</div>';return;}
+    var cur=null;
+    shown.forEach(function(it){
+      if(it.sec!==cur){cur=it.sec; var h=document.createElement('h2'); h.className='sec-h'; h.textContent=it.sec+'. '+it.secTitle; list.appendChild(h);}
+      list.appendChild(card(it));
+    });
+  }
+  function readHash(){
+    var h=location.hash.replace(/^#/,''); if(!h) return null;
+    if(/^i?\d+\.\d+$/.test(h)) return h.replace(/^i/,'');
+    h.split('&').forEach(function(kv){var p=kv.split('=');if(p.length===2&&p[0] in state){state[p[0]]=decodeURIComponent(p[1]);}});
+    return null;
+  }
+  // theme
+  (function(){
+    var root=document.documentElement, saved=null; try{saved=localStorage.getItem('theme');}catch(e){}
+    if(saved) root.setAttribute('data-theme',saved);
+    document.getElementById('theme').addEventListener('click',function(){
+      var dark=root.getAttribute('data-theme')? root.getAttribute('data-theme')==='dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var next=dark?'light':'dark'; root.setAttribute('data-theme',next); try{localStorage.setItem('theme',next);}catch(e){}
+    });
+  })();
+  document.getElementById('toggle').addEventListener('click',function(){var c=document.getElementById('controls');c.classList.toggle('open');this.textContent=c.classList.contains('open')?'收起筛选':'更多筛选';});
+  document.getElementById('reset').addEventListener('click',function(){Object.keys(state).forEach(function(k){state[k]=k==='q'?'':null;});document.getElementById('q').value='';sync();render();});
+  var t; document.getElementById('q').addEventListener('input',function(e){clearTimeout(t);t=setTimeout(function(){state.q=e.target.value.trim();sync();render();},150);});
+
+  Promise.all(FILES.map(function(f){return fetch('book/'+encodeURIComponent(f)).then(function(r){if(!r.ok)throw new Error(f);return r.text();});}))
+  .then(function(texts){
+    texts.forEach(function(t,i){parse(t,FILES[i]);});
+    document.getElementById('total').textContent='共 '+items.length+' 条';
+    chipRow('r-sec',sections.map(function(s){return [String(s.n),s.n+'. '+s.title.split('：')[0]];}),'sec');
+    var used={}; items.forEach(function(it){it.cty.forEach(function(c){used[c]=(used[c]||0)+1;});});
+    chipRow('r-cty',COUNTRIES.filter(function(c){return used[c[0]];}).map(function(c){return [c[0],c[0]];}),'cty');
+    chipRow('r-ev',[['A','A 官方原文写明'],['B','B 要推算或因地而异']],'ev');
+    chipRow('r-money',[['0','不花钱'],['少','花少量钱'],['多','要花较多钱']],'money');
+    chipRow('r-grit',[['否','不费毅力'],['些','要一点毅力'],['是','要长期坚持']],'grit');
+    chipRow('r-gain',[['大','大'],['中','中'],['小','小']],'gain');
+    var jump=readHash(); if(state.q) document.getElementById('q').value=state.q;
+    if(['ev','money','grit','gain'].some(function(k){return state[k]!==null;})){document.getElementById('controls').classList.add('open');document.getElementById('toggle').textContent='收起筛选';}
+    sync(); render();
+    if(jump){var el=document.getElementById('i'+jump); if(el){el.querySelector('details').open=true; el.scrollIntoView();}}
+  })
+  .catch(function(e){document.getElementById('list').innerHTML='<div class="empty">内容加载失败，请刷新，或直接去 <a href="https://github.com/BeckyGlobal/PaidToStudyAbroad">GitHub 仓库</a> 看原文。</div>';});
+})();
+</script>
+</body>
+</html>
