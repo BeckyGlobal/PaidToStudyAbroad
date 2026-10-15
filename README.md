@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="og.png" alt="高性价比人生指南 · 海外版：高性价比留学 —— 不是你花钱去留学，是你拿钱去留学" width="820">
+<img src="og.png" alt="高性价比人生指南 · 海外版：拿钱留学 —— 不是你花钱去留学，是你拿钱去留学" width="820">
 
-# 高性价比人生指南 · 海外版：高性价比留学
+# 高性价比人生指南 · 海外版：拿钱留学
 
 <sub>An unofficial overseas companion to <a href="https://github.com/eternity4719/HowToLiveBetter">HowToLiveBetter (高性价比人生指南)</a>: scholarships, tuition-free study, fully funded government awards and paid PhDs for readers from mainland China. Official sources only.</sub>
 
@@ -239,4 +239,4 @@
 
 正文按 [CC BY-NC-ND 4.0](LICENSE)（署名-非商业性使用-禁止演绎）发布：可以转发、分享，但要注明出处并附上本仓库链接；不能用于商业用途，不能改编后再发布。
 
-转载请注明出处：《高性价比留学》，微信视频号 Becky在地球村。
+转载请注明出处：《拿钱留学》，微信视频号 Becky在地球村。
