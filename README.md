@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="og.png" alt="高性价比人生指南 · 海外版：拿钱留学 —— 不是你花钱去留学，是你拿钱去留学" width="820">
+<img src="og.png" alt="高性价比人生指南 · 海外版：高性价比留学 —— 不是你花钱去留学，是你拿钱去留学" width="820">
 
-# 高性价比人生指南 · 海外版：拿钱留学
+# 高性价比人生指南 · 海外版：高性价比留学
 
 <sub>An unofficial overseas companion to <a href="https://github.com/eternity4719/HowToLiveBetter">HowToLiveBetter (高性价比人生指南)</a>: scholarships, tuition-free study, fully funded government awards and paid PhDs for readers from mainland China. Official sources only.</sub>
 
@@ -19,7 +19,7 @@
 [![条目](https://img.shields.io/badge/%E6%9D%A1%E7%9B%AE-70%20%E6%9D%A1-18794e?style=flat-square)](#目录)
 [![证据分级](https://img.shields.io/badge/%E8%AF%81%E6%8D%AE%E5%88%86%E7%BA%A7-A%2050%20%C2%B7%20B%2020-915930?style=flat-square)](#证据分级)
 [![官方链接](https://img.shields.io/badge/%E5%AE%98%E6%96%B9%E9%93%BE%E6%8E%A5-318%20%E6%9D%A1-565a5f?style=flat-square)](docs/核实记录/)
-[![许可](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF-CC%20BY%204.0-565a5f?style=flat-square)](#许可)
+[![许可](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF-CC%20BY--NC--ND%204.0-565a5f?style=flat-square)](#许可)
 
 ### [打开在线检索页](https://beckyglobal.github.io/PaidToStudyAbroad/)
 
@@ -237,4 +237,6 @@
 
 ## 许可
 
-正文按 [CC BY 4.0](LICENSE) 发布，可以转载、改编、商用，只要注明出处并附上本仓库链接。
+正文按 [CC BY-NC-ND 4.0](LICENSE)（署名-非商业性使用-禁止演绎）发布：可以转发、分享，但要注明出处并附上本仓库链接；不能用于商业用途，不能改编后再发布。
+
+转载请注明出处：《高性价比留学》，微信视频号 Becky在地球村。
