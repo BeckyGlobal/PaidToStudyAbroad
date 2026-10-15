@@ -4,6 +4,8 @@
 
 # 高性价比人生指南 · 海外版：拿钱留学
 
+<sub>An unofficial overseas companion to <a href="https://github.com/eternity4719/HowToLiveBetter">HowToLiveBetter (高性价比人生指南)</a>: scholarships, tuition-free study, fully funded government awards and paid PhDs for readers from mainland China. Official sources only.</sub>
+
 讲怎么不花钱、甚至拿着钱出国学东西。学手艺、学护理，读本科、硕士、博士，蓝领白领都有路。美国、加拿大、澳大利亚的奖学金单独成节。<br>
 70 条建议，每条写明你要付出什么、能换回什么、证据有多硬，来源只引各国政府、政府机构、法律原文和公立大学官网。
 
