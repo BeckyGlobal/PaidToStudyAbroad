@@ -14,7 +14,7 @@
 [![在线检索](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E6%A3%80%E7%B4%A2-%E7%82%B9%E8%BF%99%E9%87%8C%E6%89%93%E5%BC%80-3451b2?style=flat-square)](https://beckyglobal.github.io/PaidToStudyAbroad/)
 [![条目](https://img.shields.io/badge/%E6%9D%A1%E7%9B%AE-45%20%E6%9D%A1-18794e?style=flat-square)](#目录)
 [![证据分级](https://img.shields.io/badge/%E8%AF%81%E6%8D%AE%E5%88%86%E7%BA%A7-A%2029%20%C2%B7%20B%2016-915930?style=flat-square)](#证据分级)
-[![来源链接](https://img.shields.io/badge/%E6%9D%A5%E6%BA%90%E9%93%BE%E6%8E%A5-150%20%E6%9D%A1-565a5f?style=flat-square)](docs/核实记录/)
+[![官方链接](https://img.shields.io/badge/%E5%AE%98%E6%96%B9%E9%93%BE%E6%8E%A5-206%20%E6%9D%A1-565a5f?style=flat-square)](docs/核实记录/)
 [![许可](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF-CC%20BY%204.0-565a5f?style=flat-square)](#许可)
 
 ### [打开在线检索页](https://beckyglobal.github.io/PaidToStudyAbroad/)
@@ -55,6 +55,7 @@
 - **想按条件挑**：打开[在线检索页](https://beckyglobal.github.io/PaidToStudyAbroad/)，可以按国家、按节、按证据等级筛，也可以按「花不花钱、花多少时间、要不要毅力」筛，几个条件能叠着用。
 - **只看结论**：每条都有一行「说人话」，把官方文件里的规定翻成大白话。它只用「收益」栏里写到的数字，不另加。
 - **想核对**：每条的「来源」栏都是官方原文链接。每节的[核实记录](docs/核实记录/)列出了支撑每个数字的原文短句和核实日期。
+- **想申请**：每条最后一行「去哪申请」放的是官方申请入口或说明页。要靠单位或学校申报的，那一行写清了第一步该找谁。
 - **拿钱之前先看「备注」**：要不要回国服务、要不要在当地干满几年、违约要不要还钱，都写在备注里。
 - **钱的换算**：欧元、日元、加元、美元按 2026 年 10 月 12 日人民币中间价折算，其他币种保留原币。
 
@@ -69,6 +70,7 @@
 - 证据等级：A
 - 来源：德意志学术交流中心北京代表处. Helmut-Schmidt硕士奖学金（PPGG）（2026）. <https://www.daad.org.cn/zh/find-funding/funding-programmes-in-germany/helmut-schmidt-ppgg/>
 - 备注：页面没写学费资不资助，待核实。页面没有正式的回国条款，只写项目目的是培养将来服务原籍国的人。语言可以用德语或英语，具体分数页面没写。
+- 去哪申请：DAAD 北京代表处 Helmut-Schmidt硕士奖学金页（页内链接到 DAAD 奖学金数据库申请） <https://www.daad.org.cn/zh/find-funding/funding-programmes-in-germany/helmut-schmidt-ppgg/>
 ```
 
 ## 拿了钱要付出什么：几根常见的绳子
@@ -90,7 +92,7 @@
 | B | 官方有依据，但金额因地区、学校、合同而不同，或者要按官方数字推算 |
 | C | 经验或共识，没有官方原文 |
 
-全书 45 条中 A 级 29 条、B 级 16 条、C 级 0 条。来源只引各国政府、政府机构和使领馆、法律原文、公立大学官网，以及政府委托或出资运营的项目官网（比如 DAAD、魁北克的 boursesqma.com），不引中介、媒体和自媒体。全书共 150 条来源链接。
+全书 45 条中 A 级 29 条、B 级 16 条、C 级 0 条。来源只引各国政府、政府机构和使领馆、法律原文、公立大学官网，以及政府委托或出资运营的项目官网（比如 DAAD、魁北克的 boursesqma.com），不引中介、媒体和自媒体。全书共 206 条官方链接（含来源和申请入口）。
 
 ## 目录
 
@@ -169,7 +171,7 @@
 
 ## 别白费劲
 
-有些很有名的奖学金不收中国大陆申请人，比如 Australia Awards、新西兰 Manaaki、美国富布赖特外国学生项目。有些国家以前免学费，现在不免了，比如挪威（2023 年秋季起收费）。详见第 2 节第 12、13 条和第 3 节第 15 条。
+有些很有名的奖学金不收中国大陆申请人，比如英联邦奖学金、Australia Awards、新西兰 Manaaki、美国富布赖特外国学生项目、日本-世界银行联合研究生奖学金、亚行-日本奖学金、日本 JDS 和韩国 KOICA 奖学金。有些国家以前免学费，现在不免了，比如挪威（2023 年秋季起收费）。详见第 2 节第 12、13 条和第 3 节第 15 条。
 
 ## 免责声明
 

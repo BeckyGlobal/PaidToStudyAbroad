@@ -56,6 +56,10 @@
   .bd{font-size:12px;padding:1px 8px;border-radius:6px;background:var(--chip);color:var(--muted)}
   .bd.A{background:var(--a);color:#fff}.bd.B{background:var(--b);color:#fff}
   .plain{background:var(--gold-bg);border-left:3px solid var(--gold);padding:8px 12px;border-radius:6px;margin:8px 0}
+  .apply{font-size:14px;margin:6px 0 2px;line-height:1.7}
+  .apply b{display:inline-block;margin-right:6px;color:var(--gold)}
+  .apply a.go{display:inline-block;margin:3px 6px 3px 0;padding:2px 10px;border:1px solid var(--line);border-radius:8px;text-decoration:none;background:var(--panel);color:var(--ink);word-break:break-word}
+  .apply a.go:hover{border-color:var(--gold)}
   details{margin-top:6px}
   summary{cursor:pointer;color:var(--muted);font-size:14px}
   .f{margin:8px 0}
@@ -122,6 +126,14 @@
     out=out.replace(/`([^`]+)`/g,'<code>$1</code>');
     return out;
   }
+  function applyHtml(s){
+    return s.split('；').map(function(seg){
+      var m=seg.match(/^\s*(.*?)\s*<(https?:\/\/[^>\s]+)>\s*(.*)$/);
+      if(!m) return inline(seg);
+      var label=(m[1]||'官方页面').replace(/[.。:：]\s*$/,'');
+      return '<a class="go" href="'+m[2]+'" target="_blank" rel="noopener">'+esc(label)+(m[3]?' '+esc(m[3]):'')+' ↗</a>';
+    }).join('');
+  }
   function parse(md,file){
     var secM=md.match(/^# (\d+)\. (.+)$/m); if(!secM) return;
     var sn=+secM[1], st=secM[2];
@@ -139,7 +151,7 @@
       var get=function(k){var v=fields[k]||''; return v.replace(/^[^：]+：/,'');};
       var it={sec:sn,secTitle:st,n:+h[1],id:sn+'.'+h[1],title:h[2],tag:tag,fields:fields,
         plain:get('说人话'),cost:get('成本'),gain:fields['收益']?fields['收益'].replace(/^收益/,'').replace(/^：/,''):'',
-        ev:(get('证据等级').match(/[ABC]/)||[''])[0],src:get('来源'),note:get('备注'),file:file,
+        apply:get('去哪申请'),ev:(get('证据等级').match(/[ABC]/)||[''])[0],src:get('来源'),note:get('备注'),file:file,
         gainLabel:(fields['收益']||'').match(/^收益(（[^）]*）)?/)};
       var hay=(it.title+' '+it.plain+' '+it.cost+' '+it.gain+' '+it.note);
       it.hay=hay.toLowerCase();
@@ -185,7 +197,8 @@
     d.innerHTML='<h3><span class="num">'+it.id+'</span>'+inline(it.title)+'</h3>'+
       '<div class="badges">'+bd+'</div>'+
       (it.plain?'<div class="plain">'+inline(it.plain)+'</div>':'')+
-      '<details><summary>看成本、官方规定、绳子和来源</summary>'+
+      (it.apply?'<div class="apply"><b>去哪申请</b>'+applyHtml(it.apply)+'</div>':'')+
+      '<details><summary>看成本、官方规定、绳子和来源出处</summary>'+
       '<div class="f"><b>成本</b>'+inline(it.cost)+'</div>'+
       '<div class="f"><b>收益'+esc(gl)+'</b>'+inline(it.gain)+'</div>'+
       '<div class="f"><b>备注</b>'+inline(it.note)+'</div>'+
