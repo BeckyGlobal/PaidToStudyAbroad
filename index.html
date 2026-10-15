@@ -237,7 +237,7 @@
   document.getElementById('reset').addEventListener('click',function(){Object.keys(state).forEach(function(k){state[k]=k==='q'?'':null;});document.getElementById('q').value='';sync();render();});
   var t; document.getElementById('q').addEventListener('input',function(e){clearTimeout(t);t=setTimeout(function(){state.q=e.target.value.trim();sync();render();},150);});
 
-  Promise.all(FILES.map(function(f){return fetch('book/'+encodeURIComponent(f)).then(function(r){if(!r.ok)throw new Error(f);return r.text();});}))
+  Promise.all(FILES.map(function(f){return fetch('book/'+encodeURIComponent(f),{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(f);return r.text();});}))
   .then(function(texts){
     texts.forEach(function(t,i){parse(t,FILES[i]);});
     document.getElementById('total').textContent='共 '+items.length+' 条';
