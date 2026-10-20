@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>留学方向初筛 · 拿钱留学</title>
+<meta name="description" content="填几项孩子的基本情况，看看该往哪些国家和地区、哪类项目去研究。只引各国政府和官方机构原文。">
+<meta name="robots" content="noindex,nofollow">
+<style>
+  :root{
+    --bg:#f7f4ee; --panel:#ffffff; --ink:#1d2a33; --muted:#5d6b75; --line:#e3ddd2;
+    --accent:#0f2a3d; --gold:#c98a10; --gold-bg:#fbf1dc; --chip:#eef1f3; --chip-on:#0f2a3d; --chip-on-ink:#fff;
+    --good:#18794e; --ok:#915930; --hard:#5d6b75;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f1a22; --panel:#16232d; --ink:#e7edf1; --muted:#9aaab5; --line:#263744;
+      --accent:#f2b53a; --gold:#f2b53a; --gold-bg:#2a2410; --chip:#1f2f3b; --chip-on:#f2b53a; --chip-on-ink:#0f1a22;
+      --good:#4cc38a; --ok:#d79a6a; --hard:#9aaab5;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f1a22; --panel:#16232d; --ink:#e7edf1; --muted:#9aaab5; --line:#263744;
+    --accent:#f2b53a; --gold:#f2b53a; --gold-bg:#2a2410; --chip:#1f2f3b; --chip-on:#f2b53a; --chip-on-ink:#0f1a22;
+    --good:#4cc38a; --ok:#d79a6a; --hard:#9aaab5;
+  }
+  *{box-sizing:border-box}
+  html,body{overflow-x:hidden}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif}
+  a{color:inherit}
+  header{background:#0f2a3d;color:#f5efe3;padding:26px 16px 22px;position:relative}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  header .wrap{padding:0}
+  .kicker{color:#f2b53a;font-weight:700;letter-spacing:2px;font-size:14px}
+  h1{margin:4px 0 6px;font-size:28px;line-height:1.25}
+  .tag{margin:0;font-size:16px;color:rgba(245,239,227,.9)}
+  .follow{margin-top:10px;display:inline-block;background:rgba(242,181,58,.15);border:1px solid rgba(242,181,58,.5);border-radius:8px;padding:4px 10px;font-size:14px}
+  .follow b{color:#f2b53a}
+  .theme{position:absolute;right:16px;top:14px;background:none;border:1px solid rgba(245,239,227,.4);color:#f5efe3;border-radius:8px;font-size:13px;padding:2px 8px;cursor:pointer}
+  .note{background:var(--gold-bg);border-left:3px solid var(--gold);padding:10px 12px;border-radius:6px;margin:18px 0;font-size:14px}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+  .q h2{font-size:17px;margin:0 0 2px}
+  .q .hint{color:var(--muted);font-size:13px;margin:0 0 8px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:0;background:var(--chip);color:var(--ink);padding:7px 13px;border-radius:999px;font-size:15px;cursor:pointer;line-height:1.4;font-family:inherit}
+  .chip[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-ink)}
+  .chip .rk{display:inline-block;min-width:1.3em;margin-right:4px;font-weight:700}
+  .sub{margin-top:10px;display:none;gap:10px;flex-wrap:wrap;align-items:center;font-size:15px}
+  .sub.on{display:flex}
+  input[type=number],select{font:inherit;font-size:16px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);width:7.5em}
+  select{width:auto}
+  .langrow{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+  .go{display:block;width:100%;margin:20px 0 8px;padding:14px;border:0;border-radius:12px;background:var(--accent);color:var(--chip-on-ink);font:inherit;font-size:18px;font-weight:700;cursor:pointer}
+  .err{color:#b42318;font-size:14px;min-height:1.2em}
+  #result{display:none}
+  .tier-h{margin:28px 0 6px;font-size:19px;display:flex;align-items:center;gap:8px}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .t1 .dot{background:var(--good)} .t2 .dot{background:var(--ok)} .t3 .dot{background:var(--hard)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+  .card h3{margin:0 0 4px;font-size:18px;line-height:1.4}
+  .card h3 small{color:var(--muted);font-weight:400;font-size:14px}
+  .why{margin:6px 0;padding-left:20px}
+  .why li{margin:2px 0}
+  .warn{color:var(--ok);font-size:14px;margin:4px 0}
+  .f{margin:6px 0;font-size:15px}
+  .f b{display:inline-block;min-width:5.5em;color:var(--muted);font-weight:600}
+  .next{background:var(--gold-bg);border-radius:8px;padding:6px 10px;margin:10px 0 6px;font-size:15px}
+  .links{font-size:14px;margin-top:6px}
+  .links a{display:inline-block;margin:3px 6px 3px 0;padding:2px 10px;border:1px solid var(--line);border-radius:8px;text-decoration:none;word-break:break-word}
+  details{margin:12px 0}
+  summary{cursor:pointer;color:var(--muted);font-size:15px}
+  .skip{font-size:14px;color:var(--muted);padding-left:20px}
+  .cov{font-size:14px;color:var(--muted)}
+  .cov b{color:var(--ink)}
+  .again{background:none;border:1px solid var(--line);border-radius:10px;padding:8px 14px;font:inherit;color:var(--ink);cursor:pointer;margin-top:10px}
+  footer{color:var(--muted);font-size:13px;padding:30px 0 50px}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f2a3d;color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;display:none;z-index:9;max-width:90vw;text-align:center}
+  .noprint-msg{display:none}
+  @media print{
+    body *{display:none !important}
+    body .noprint-msg{display:block !important;font-size:20px;padding:40px;color:#000}
+  }
+</style>
+</head>
+<body>
+<div class="noprint-msg">本页不提供打印和导出。请在网页上查看：beckyglobal.github.io/PaidToStudyAbroad/match/ ，微信视频号 Becky在地球村</div>
+
+<header>
+  <button class="theme" id="theme" type="button" aria-label="切换深色或浅色">深/浅</button>
+  <div class="wrap">
+    <div class="kicker">拿钱留学 · 小工具</div>
+    <h1>留学方向初筛</h1>
+    <p class="tag">完全不懂留学也没关系。填几项孩子的情况，先看看该往哪里研究。</p>
+    <div class="follow">关注作者：微信视频号 <b>Becky在地球村</b></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="note">这里只给方向，不预测录取，也不保证移民。填的内容只在你自己的手机或电脑上计算，不会上传，也不会保存。</div>
+
+  <form id="form" novalidate>
+    <section class="q">
+      <h2>1. 孩子现在几岁？</h2>
+      <p class="hint">按周岁填。</p>
+      <input type="number" id="age" min="5" max="45" inputmode="numeric" placeholder="比如 16"> 岁
+    </section>
+
+    <section class="q">
+      <h2>2. 孩子现在读到哪一步？</h2>
+      <p class="hint">选最接近的一项。</p>
+      <div class="chips" data-name="stage" data-single>
+        <button type="button" class="chip" data-v="primary">小学在读</button>
+        <button type="button" class="chip" data-v="junior">初中在读</button>
+        <button type="button" class="chip" data-v="senior">普通高中在读</button>
+        <button type="button" class="chip" data-v="gaokao_done">高中毕业，参加过高考</button>
+        <button type="button" class="chip" data-v="nogaokao_done">高中毕业，没参加高考</button>
+        <button type="button" class="chip" data-v="zhongzhi">中职（中专、职高）</button>
+        <button type="button" class="chip" data-v="zhuanke2">两年制大专</button>
+        <button type="button" class="chip" data-v="zhuanke3_in">三年制大专在读</button>
+        <button type="button" class="chip" data-v="zhuanke3_done">三年制大专毕业</button>
+        <button type="button" class="chip" data-v="bachelor_in">本科在读</button>
+        <button type="button" class="chip" data-v="bachelor_done">本科毕业</button>
+        <button type="button" class="chip" data-v="master_done">硕士毕业</button>
+        <button type="button" class="chip" data-v="intl">国际学校 / 国际课程（A-Level、IB 等）</button>
+      </div>
+      <div class="sub" id="sub-gaokao">高考总分 <input type="number" id="gk" inputmode="numeric" placeholder="分数"> 满分 <input type="number" id="gkmax" inputmode="numeric" placeholder="比如 750"><span class="hint" style="width:100%">不记得可以不填。德国等国家直接按高考占满分的比例算。</span></div>
+      <div class="sub" id="sub-sem">已经读完 <input type="number" id="sem" min="0" max="12" inputmode="numeric" placeholder="几"> 个学期</div>
+    </section>
+
+    <section class="q">
+      <h2>3. 在学校的成绩大概怎样？</h2>
+      <p class="hint">按年级或专业排名估一下。</p>
+      <div class="chips" data-name="grades" data-single>
+        <button type="button" class="chip" data-v="top5">前 5%</button>
+        <button type="button" class="chip" data-v="top20">前 20%</button>
+        <button type="button" class="chip" data-v="mid">中等</button>
+        <button type="button" class="chip" data-v="low">中下</button>
+        <button type="button" class="chip" data-v="unsure">不确定</button>
+      </div>
+    </section>
+
+    <section class="q">
+      <h2>4. 英语怎么样？</h2>
+      <div class="chips" data-name="enlevel" data-single>
+        <button type="button" class="chip" data-v="none">几乎不会</button>
+        <button type="button" class="chip" data-v="basic">能简单日常交流</button>
+        <button type="button" class="chip" data-v="score">有考试成绩</button>
+        <button type="button" class="chip" data-v="unsure">不确定</button>
+      </div>
+      <div class="sub" id="sub-en">雅思 <input type="number" id="ielts" step="0.5" inputmode="decimal" placeholder="如 6.5"> 托福 <input type="number" id="toefl" inputmode="numeric" placeholder="如 90"> 多邻国 <input type="number" id="duo" inputmode="numeric" placeholder="如 115"><span class="hint" style="width:100%">有哪个填哪个。</span></div>
+    </section>
+
+    <section class="q">
+      <h2>5. 会别的外语吗？</h2>
+      <p class="hint">选了语种再选大概水平。A1 是刚入门，B1 能应付日常，C1 能用来上大学的课。日语 N2 约等于 B2，韩语 TOPIK 4 级约等于 B2。</p>
+      <div class="chips" data-name="langs" data-multi>
+        <button type="button" class="chip" data-v="de">德语</button>
+        <button type="button" class="chip" data-v="ja">日语</button>
+        <button type="button" class="chip" data-v="ko">韩语</button>
+        <button type="button" class="chip" data-v="fr">法语</button>
+        <button type="button" class="chip" data-v="es">西班牙语</button>
+        <button type="button" class="chip" data-v="it">意大利语</button>
+        <button type="button" class="chip" data-v="nl">荷兰语</button>
+      </div>
+      <div id="langlevels"></div>
+    </section>
+
+    <section class="q">
+      <h2>6. 每年能拿出多少钱？</h2>
+      <p class="hint">学费加生活费，按人民币算。</p>
+      <div class="chips" data-name="budget" data-single>
+        <button type="button" class="chip" data-v="lt10">10 万以下</button>
+        <button type="button" class="chip" data-v="b10_20">10–20 万</button>
+        <button type="button" class="chip" data-v="b20_30">20–30 万</button>
+        <button type="button" class="chip" data-v="b30_50">30–50 万</button>
+        <button type="button" class="chip" data-v="gt50">50 万以上</button>
+        <button type="button" class="chip" data-v="unsure">不确定</button>
+      </div>
+    </section>
+
+    <section class="q">
+      <h2>7. 出去最想得到什么？</h2>
+      <p class="hint">可以多选，按最重要的先点，数字就是顺序。</p>
+      <div class="chips" data-name="goals" data-multi data-ordered>
+        <button type="button" class="chip" data-v="degree_home">拿个好学历回国</button>
+        <button type="button" class="chip" data-v="local_job">留在当地工作</button>
+        <button type="button" class="chip" data-v="immigrate">拿当地身份</button>
+        <button type="button" class="chip" data-v="cheap">花最少钱拿文凭</button>
+        <button type="button" class="chip" data-v="skill_job">学门技术尽快工作</button>
+        <button type="button" class="chip" data-v="top_school">冲名校</button>
+        <button type="button" class="chip" data-v="experience">让孩子开开眼界</button>
+      </div>
+    </section>
+
+    <section class="q">
+      <h2>8. 孩子对什么方向感兴趣？</h2>
+      <div class="chips" data-name="field" data-single>
+        <button type="button" class="chip" data-v="stem">理工、计算机</button>
+        <button type="button" class="chip" data-v="biz">商科</button>
+        <button type="button" class="chip" data-v="med">医学、护理</button>
+        <button type="button" class="chip" data-v="art">艺术设计</button>
+        <button type="button" class="chip" data-v="hum">文科、社科</button>
+        <button type="button" class="chip" data-v="skill">技术手艺</button>
+        <button type="button" class="chip" data-v="unsure">还不确定</button>
+      </div>
+    </section>
+
+    <section class="q">
+      <h2>9. 家长能陪着去吗？</h2>
+      <div class="chips" data-name="parent" data-single>
+        <button type="button" class="chip" data-v="yes">能陪读</button>
+        <button type="button" class="chip" data-v="no">不能，孩子自己去</button>
+        <button type="button" class="chip" data-v="unsure">不确定</button>
+      </div>
+    </section>
+
+    <section class="q">
+      <h2>10. 能接受去不说英语的国家、学一门新语言吗？</h2>
+      <div class="chips" data-name="newLang" data-single>
+        <button type="button" class="chip" data-v="yes">能接受</button>
+        <button type="button" class="chip" data-v="no">不想学新语言</button>
+        <button type="button" class="chip" data-v="unsure">不确定</button>
+      </div>
+    </section>
+
+    <section class="q">
+      <h2>11. 能接受在国外读几年？</h2>
+      <div class="chips" data-name="years" data-single>
+        <button type="button" class="chip" data-v="y2">1–2 年</button>
+        <button type="button" class="chip" data-v="y4">3–4 年</button>
+        <button type="button" class="chip" data-v="y5">5 年以上</button>
+        <button type="button" class="chip" data-v="unsure">不确定</button>
+      </div>
+    </section>
+
+    <div class="err" id="err"></div>
+    <button class="go" type="submit">看看适合往哪里研究</button>
+  </form>
+
+  <section id="result" aria-live="polite"></section>
+
+  <details>
+    <summary>这个工具是怎么算的</summary>
+    <p style="font-size:14px;color:var(--muted)">先看硬条件：学历阶段、年龄、语言、预算，任何一条走不通就不推荐，并在“为什么没推荐”里写原因。剩下的按入学路径、语言、预算宽松程度、和你选的目标有多对得上打分，分成三组。入学规则和费用都来自各国政府、使馆、官方留学机构和学校官网，每条结果下面都有原文链接。“和目标对得上”这一项是本工具的判断，仅供参考。</p>
+  </details>
+
+  <footer>
+    来源只引各国政府、政府机构和使领馆、官方留学机构、法律原文和学校官网。政策每年都改，申请前请照每条的来源链接再查一遍。<br>
+    本工具不是法律、移民或财务意见。按 CC BY-NC-ND 4.0 发布，不能商用，不能改编。<br>
+    <b>转载请注明出处：《拿钱留学》，微信视频号 Becky在地球村</b><br>
+    <a href="../">回到《拿钱留学》指南</a>
+  </footer>
+</main>
+<div class="toast" id="toast"></div>
+
+<script src="data.js"></script>
+<script src="rules.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+
+  // 深浅色
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  $('theme').onclick = function () {
+    var cur = document.documentElement.getAttribute('data-theme');
+    var dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    var next = dark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  };
+
+  // 不提供打印和导出 PDF
+  function toast(msg) { var el = $('toast'); el.textContent = msg; el.style.display = 'block'; clearTimeout(el._t); el._t = setTimeout(function () { el.style.display = 'none'; }, 3000); }
+  document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P' || e.key === 's' || e.key === 'S')) { e.preventDefault(); toast('本页不提供打印和保存，请直接在网页上查看'); }
+  });
+  window.addEventListener('beforeprint', function () { toast('本页不提供打印和导出'); });
+
+  // 读数据
+  var DATA;
+  try {
+    var KEY = 'BeckyGlobal-liuxue', raw = atob(window.__MD), bytes = new Uint8Array(raw.length);
+    for (var i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i) ^ KEY.charCodeAt(i % KEY.length);
+    DATA = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+  } catch (e) { $('err').textContent = '数据没加载出来，请刷新页面再试。'; return; }
+
+  // 选项按钮
+  var state = { langs: {} };
+  document.querySelectorAll('.chips').forEach(function (box) {
+    var name = box.dataset.name, single = box.hasAttribute('data-single'), ordered = box.hasAttribute('data-ordered');
+    if (!single) state[name] = [];
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('.chip'); if (!b) return;
+      var v = b.dataset.v;
+      if (single) {
+        box.querySelectorAll('.chip').forEach(function (c) { c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); });
+        state[name] = v;
+      } else {
+        var arr = state[name], i = arr.indexOf(v);
+        if (i >= 0) arr.splice(i, 1); else arr.push(v);
+        box.querySelectorAll('.chip').forEach(function (c) {
+          var k = arr.indexOf(c.dataset.v); c.setAttribute('aria-pressed', k >= 0 ? 'true' : 'false');
+          if (ordered) { var rk = c.querySelector('.rk'); if (k >= 0) { if (!rk) { rk = document.createElement('span'); rk.className = 'rk'; c.prepend(rk); } rk.textContent = (k + 1); } else if (rk) rk.remove(); }
+        });
+      }
+      onChange(name);
+    });
+  });
+
+  var LANG_ZH = { de: '德语', ja: '日语', ko: '韩语', fr: '法语', es: '西班牙语', it: '意大利语', nl: '荷兰语' };
+  function onChange(name) {
+    if (name === 'stage') {
+      $('sub-gaokao').classList.toggle('on', state.stage === 'gaokao_done' || state.stage === 'bachelor_in');
+      $('sub-sem').classList.toggle('on', state.stage === 'bachelor_in');
+    }
+    if (name === 'enlevel') $('sub-en').classList.toggle('on', state.enlevel === 'score');
+    if (name === 'langs') {
+      var box = $('langlevels'), keep = {};
+      box.querySelectorAll('select').forEach(function (s) { keep[s.dataset.l] = s.value; });
+      box.innerHTML = '';
+      state.langs.forEach(function (l) {
+        var row = document.createElement('div'); row.className = 'langrow';
+        row.innerHTML = '<span>' + LANG_ZH[l] + '大概水平</span><select data-l="' + l + '"><option value="A1">A1 刚入门</option><option value="A2">A2</option><option value="B1">B1 能应付日常</option><option value="B2">B2</option><option value="C1">C1 能上大学的课</option><option value="C2">C2 接近母语</option></select>';
+        box.appendChild(row);
+        if (keep[l]) row.querySelector('select').value = keep[l];
+      });
+    }
+  }
+
+  function num(id) { var v = parseFloat($(id).value); return isNaN(v) ? null : v; }
+
+  function profile() {
+    var p = { age: num('age'), stage: state.stage, grades: state.grades, budget: state.budget || 'unsure',
+      goals: state.goals.slice(), field: state.field, parent: state.parent, newLang: state.newLang || 'unsure', years: state.years,
+      en: {}, langs: {}, gaokaoPct: null, semesters: null };
+    var gk = num('gk'), gkm = num('gkmax');
+    if (gk != null && gkm && gkm > 0) p.gaokaoPct = Math.round(gk / gkm * 1000) / 10;
+    if (state.stage === 'bachelor_in') p.semesters = num('sem');
+    if (state.enlevel === 'score') p.en = { ielts: num('ielts'), toefl: num('toefl'), duolingo: num('duo') };
+    $('langlevels').querySelectorAll('select').forEach(function (s) { p.langs[s.dataset.l] = s.value; });
+    return p;
+  }
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function range(r, unit) { if (r == null) return null; if (Array.isArray(r)) return r[0] === r[1] ? r[0] + unit : r[0] + '–' + r[1] + unit; return r + unit; }
+
+  function nextStep(x) {
+    var t = x.prog.type;
+    if (t === 'k12') return '联系德国的国际寄宿学校，问清入学年级、语言要求和费用。';
+    if (t === 'phd') return '在 DAAD 网站找博士职位和奖学金，先联系导师。';
+    if (x.route === 'conditional' && t === 'bachelor') return '把高考目标定在总分 70%，同时开始学德语。';
+    if (x.lang.st === 'learn') return x.lang.text.replace('要', '') + '，这是第一道坎。';
+    if (t === 'foundation' || x.route === 'foundation') return '准备 APS 审核，查好想去的预科的入学考试时间。';
+    if (t === 'vocational') return '在 Make it in Germany 官网找培训岗位，和企业签培训合同。';
+    if (t === 'master') return '在 DAAD 课程库搜专业，对照语言和成绩要求。';
+    return '准备 APS 审核，再看学校的申请截止日期。';
+  }
+
+  function card(x) {
+    var c = x.country, p = x.prog, after = '';
+    if (p.after_completion_zh) after = p.after_completion_zh;
+    else if (['bachelor', 'master', 'phd'].indexOf(p.type) >= 0 && c.after_graduation) after = c.after_graduation.job_search_zh + ' ' + c.after_graduation.settlement_zh;
+    var links = [];
+    if (['foundation', 'bachelor', 'master'].indexOf(p.type) >= 0 && c.china_specific) links = links.concat(c.china_specific.sources.slice(0, 1));
+    links = links.concat(p.sources || []);
+    var seen = {}; links = links.filter(function (s) { if (seen[s.url]) return false; seen[s.url] = 1; return true; }).slice(0, 3);
+    var why = x.reasons.concat(x.goals.slice(0, 2));
+    var cost = range(p.annual_cost_cny_wan, ' 万元/年');
+    var main = '<div class="card">' +
+      '<h3>' + esc(c.name_zh) + ' · ' + esc(p.type_zh) + ' <small>' + esc(p.local_name) + '</small></h3>' +
+      '<ul class="why">' + why.map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ul>' +
+      x.notes.map(function (n) { return '<div class="warn">注意：' + esc(n) + '</div>'; }).join('') +
+      '<div class="f"><b>大概花费</b>' + esc(cost ? '约 ' + cost : (p.annual_cost_note_zh || '看学校报价')) + '</div>' +
+      (p.language_zh ? '<div class="f"><b>语言要求</b>' + esc(p.language_zh) + '</div>' : '') +
+      (p.duration_years ? '<div class="f"><b>一般读</b>' + esc(range(p.duration_years, ' 年')) + '</div>' : '') +
+      '<div class="next">下一步：' + esc(nextStep(x)) + '</div>';
+    var more = '' +
+      (p.annual_cost_breakdown_zh ? '<div class="f"><b>花费明细</b>' + esc(p.annual_cost_breakdown_zh) + '</div>' : (cost && p.annual_cost_note_zh ? '<div class="f"><b>花费明细</b>' + esc(p.annual_cost_note_zh) + '</div>' : '')) +
+      (p.entry_requirements_zh ? '<div class="f"><b>要准备</b>' + esc(p.entry_requirements_zh.join('；')) + '</div>' : '') +
+      (after ? '<div class="f"><b>读完以后</b>' + esc(after) + '</div>' : '') +
+      '<div class="f"><b>说明</b>' + esc(p.suitable_note_zh) + '</div>' +
+      (c.china_specific && c.china_specific.aps_note_zh && ['foundation', 'bachelor', 'master'].indexOf(p.type) >= 0 ? '<div class="f"><b>中国学生</b>' + esc(c.china_specific.aps_note_zh) + '</div>' : '') +
+      '<div class="links">官方原文：' + links.map(function (s) { return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.title) + '</a>'; }).join('') + '</div>';
+    var h = main + '<details><summary>展开看细节和官方原文</summary>' + more + '</details></div>';
+    return h;
+  }
+
+  $('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!state.stage) { $('err').textContent = '请至少选一下第 2 题：孩子现在读到哪一步。'; $('form').querySelector('[data-name=stage]').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+    $('err').textContent = '';
+    var p = profile(), picks = [], skipped = [];
+    DATA.countries.forEach(function (c) {
+      var r = MatchRules.evaluate(c, p);
+      picks = picks.concat(r.picks);
+      r.skipped.forEach(function (s) { if (s.kind !== 'stage') skipped.push({ c: c, s: s }); });
+    });
+    picks.sort(function (a, b) { return a.tier - b.tier || b.score - a.score; });
+    var TIERS = [[1, '很匹配'], [2, '可以考虑'], [3, '需要多努力一点']];
+    var html = '<h2 style="margin-top:28px">结果</h2>';
+    if (!picks.length) html += '<div class="note">按你填的情况，目前收录的国家和地区里还没有合适的方向。可以看下面“为什么没推荐”，改改条件再试。</div>';
+    TIERS.forEach(function (t) {
+      var list = picks.filter(function (x) { return x.tier === t[0]; });
+      if (!list.length) return;
+      html += '<h3 class="tier-h t' + t[0] + '"><span class="dot"></span>' + t[1] + '</h3>' + list.map(card).join('');
+    });
+    if (skipped.length) {
+      html += '<details open><summary>为什么没推荐这些</summary><ul class="skip">' +
+        skipped.map(function (k) { return '<li>' + esc(k.c.name_zh + ' · ' + k.s.prog.type_zh) + '：' + esc(k.s.why) + '</li>'; }).join('') + '</ul></details>';
+    }
+    var done = DATA.countries.map(function (c) { return c.name_zh; });
+    html += '<div class="note cov">目前已收录：<b>' + done.join('、') + '</b>。其余国家和地区的数据正在整理：' +
+      DATA.coverage.map(function (g) { return g[1].filter(function (n) { return done.indexOf(n) < 0; }).join('、'); }).filter(Boolean).join('、') + '。</div>';
+    html += '<div class="note">这只是初步方向参考，不是录取或移民判断。政策随时会变，请以各国官方最新信息为准。数据核实时间：' + esc(DATA.countries.map(function (c) { return c.last_checked; }).sort().pop()) + '。</div>';
+    html += '<button class="again" type="button" id="again">改一下条件再看</button>';
+    var r = $('result'); r.innerHTML = html; r.style.display = 'block';
+    r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    $('again').onclick = function () { $('form').scrollIntoView({ behavior: 'smooth' }); };
+  });
+})();
+</script>
+</body>
+</html>
