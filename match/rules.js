@@ -9,11 +9,26 @@
 (function () {
   'use strict';
 
-  // 【可调】每年预算选项对应的上限（万元人民币）
-  var BUDGET_MAX = { lt10: 10, b10_20: 20, b20_30: 30, b30_50: 50, gt50: 9999, unsure: null };
+  // 【可调】总预算选项对应的上限（万元人民币，学费加生活费，整个读完的钱）
+  var BUDGET_MAX = { lt30: 30, b30_60: 60, b60_100: 100, b100_200: 200, gt200: 99999, unsure: null };
 
-  // 【可调】预算比项目最低要求多出不到这么多（万元）时，算“预算比较紧”
-  var TIGHT_MARGIN = 2;
+  // 【可调】总预算比读完最低花费多出不到这个比例时，算“预算比较紧”
+  var TIGHT_RATIO = 1.15;
+
+  // 【可调】数据里没写读几年时，按这个年数估算
+  var DEFAULT_YEARS = { foundation: 1, vocational: 2, associate: 2, bachelor: 4, master: 2, phd: 4 };
+
+  // 读完最少要几年：中小学按读到 18 岁算；要先读预科或语言的本科加 1 年
+  function minYears(prog, p, route) {
+    var d = prog.duration_years, y;
+    if (prog.type === 'k12') y = p.age ? Math.max(1, Math.min(12, 18 - p.age)) : 3;
+    else if (Array.isArray(d)) y = d[0];
+    else if (typeof d === 'number') y = d;
+    else y = DEFAULT_YEARS[prog.type] || 2;
+    if (prog.type === 'bachelor' && route === 'foundation') y += 1;
+    return y;
+  }
+  function wan(x) { return x >= 10 ? Math.round(x) : Math.round(x * 10) / 10; }
 
   // 【可调】雅思分数和托福、多邻国的粗略对照，只用来判断“英语够不够”。
   // 这是本工具的估计，不是任何学校的官方换算，各项目以官网分数为准。
@@ -155,13 +170,15 @@
 
       // 不知道最低花费时按“不确定”给 1 分，免得没数字的项目排得太前
       var bScore = (m.min_budget == null && budgetMax != null) ? 1 : 2;
-      if (m.min_budget != null && budgetMax != null) {
-        if (budgetMax < m.min_budget) {
-          out.skipped.push({ prog: prog, why: m.budget_reason_zh || ('每年最低大约要 ' + m.min_budget + ' 万元，超过你填的预算') });
+      var yrs = minYears(prog, p, acc.route), need = m.min_budget != null ? wan(m.min_budget * yrs) : null;
+      var needTxt = need != null ? '读完最少约 ' + need + ' 万元（学费加生活费，每年约 ' + m.min_budget + ' 万 × ' + yrs + ' 年）' : '';
+      if (need != null && budgetMax != null) {
+        if (budgetMax < need) {
+          out.skipped.push({ prog: prog, why: needTxt + '，超过你填的总预算' });
           return;
         }
-        if (budgetMax < m.min_budget + TIGHT_MARGIN) { bScore = 1; notes.push(m.tight_note_zh || '预算比较紧，要选最便宜的学校和城市'); }
-        else if (m.min_budget > 0) fits.push('你填的预算够付每年约 ' + m.min_budget + ' 万元的最低花费');
+        if (budgetMax < need * TIGHT_RATIO) { bScore = 1; notes.push('总预算比较紧：' + needTxt + '。' + (m.tight_note_zh || '要选最便宜的学校和城市')); }
+        else if (need > 0) fits.push('你填的总预算够用：' + needTxt);
       }
 
       if (m.parent_visa != null && p.parent === 'yes' && prog.type === 'k12') {
@@ -186,10 +203,10 @@
           (p.goals || []).indexOf('skill_job') < 0 && p.field !== 'skill' && tier < 2) tier = 2;
 
       out.picks.push({ country: country, prog: prog, tier: tier, score: total, route: acc.route, lang: lc,
-        fits: fits, notes: notes });
+        fits: fits, notes: notes, years: yrs });
     });
     return out;
   }
 
-  window.MatchRules = { evaluate: evaluate, BUDGET_MAX: BUDGET_MAX, LANG_NAME: LANG_NAME };
+  window.MatchRules = { evaluate: evaluate, BUDGET_MAX: BUDGET_MAX, LANG_NAME: LANG_NAME, minYears: minYears };
 })();
