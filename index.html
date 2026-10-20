@@ -87,13 +87,14 @@
   .theme{position:absolute;right:16px;top:14px;background:none;border:1px solid rgba(245,239,227,.4);color:#f5efe3;border-radius:8px;font-size:13px;padding:2px 8px;cursor:pointer}
   header{position:relative}
   .static h2{font-size:19px;margin:22px 0 6px}.static h2 a{text-decoration:none}.static p{color:var(--muted);margin:0 0 6px}.static ul{margin:0;padding-left:20px;font-size:15px}
-</style>
+.noprint-msg{display:none}.np-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f2a3d;color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;display:none;z-index:99;max-width:90vw;text-align:center}@media print{body *{display:none !important}body .noprint-msg{display:block !important;font-size:20px;padding:40px;color:#000}}</style>
 <!-- ld:start -->
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"高性价比人生指南 · 海外版：拿钱留学","alternateName":["拿钱留学","高性价比人生指南海外版"],"url":"https://beckyglobal.github.io/PaidToStudyAbroad/","inLanguage":"zh-CN"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"高性价比人生指南 · 海外版：拿钱留学","url":"https://beckyglobal.github.io/PaidToStudyAbroad/","inLanguage":"zh-CN","dateModified":"2026-10-20","author":{"@type":"Person","name":"Becky在地球村"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans","mainEntity":{"@type":"ItemList","numberOfItems":7,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://beckyglobal.github.io/PaidToStudyAbroad/section/1.html","name":"1. 学手艺，有人给钱：职业培训和护理"},{"@type":"ListItem","position":2,"url":"https://beckyglobal.github.io/PaidToStudyAbroad/section/2.html","name":"2. 本科和硕士：不要学费，或者学费很低的地方"},{"@type":"ListItem","position":3,"url":"https://beckyglobal.github.io/PaidToStudyAbroad/section/3.html","name":"3. 政府给全奖：本科、硕士、博士"},{"@type":"ListItem","position":4,"url":"https://beckyglobal.github.io/PaidToStudyAbroad/section/4.html","name":"4. 读博就是上班：有的国家博士生是员工，按月发工资"},{"@type":"ListItem","position":5,"url":"https://beckyglobal.github.io/PaidToStudyAbroad/section/5.html","name":"5. 美国：本科和研究生怎么拿奖学金"},{"@type":"ListItem","position":6,"url":"https://beckyglobal.github.io/PaidToStudyAbroad/section/6.html","name":"6. 加拿大：本科和研究生怎么拿奖学金"},{"@type":"ListItem","position":7,"url":"https://beckyglobal.github.io/PaidToStudyAbroad/section/7.html","name":"7. 澳大利亚：本科和研究生怎么拿奖学金"}]}}</script>
 <!-- ld:end -->
 </head>
 <body>
+<div class="noprint-msg">本页不提供打印和导出。请在网页上查看：beckyglobal.github.io/PaidToStudyAbroad/ ，微信视频号 Becky在地球村</div>
 <header>
   <button class="theme" id="theme" type="button" aria-label="切换深色或浅色">深/浅</button>
   <div class="wrap">
@@ -285,5 +286,7 @@
   .catch(function(e){document.getElementById('list').innerHTML='<div class="empty">内容加载失败，请刷新，或直接去 <a href="https://github.com/BeckyGlobal/PaidToStudyAbroad">GitHub 仓库</a> 看原文。</div>';});
 })();
 </script>
+<div class="np-toast" id="np-toast"></div>
+<script>(function(){var t=document.getElementById('np-toast');function s(m){t.textContent=m;t.style.display='block';clearTimeout(t._t);t._t=setTimeout(function(){t.style.display='none';},3000);}document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&/^[pPsS]$/.test(e.key)){e.preventDefault();s('本页不提供打印和保存，请直接在网页上查看');}});window.addEventListener('beforeprint',function(){s('本页不提供打印和导出');});})();</script>
 </body>
 </html>
