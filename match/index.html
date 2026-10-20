@@ -61,7 +61,10 @@
   .card h3 small{color:var(--muted);font-weight:400;font-size:14px}
   .why{margin:6px 0;padding-left:20px}
   .why li{margin:2px 0}
-  .warn{color:var(--ok);font-size:14px;margin:4px 0}
+  .warn{color:var(--ok)}
+  .sec-t{font-weight:700;font-size:15px;margin:10px 0 2px}
+  .warn-t{color:var(--ok)}
+  .what{margin:2px 0 4px;font-size:15px}
   .f{margin:6px 0;font-size:15px}
   .f b{display:inline-block;min-width:5.5em;color:var(--muted);font-weight:600}
   .next{background:var(--gold-bg);border-radius:8px;padding:6px 10px;margin:10px 0 6px;font-size:15px}
@@ -249,8 +252,8 @@
 </main>
 <div class="toast" id="toast"></div>
 
-<script src="data.js"></script>
-<script src="rules.js"></script>
+<script src="data.js?v=20261020c"></script>
+<script src="rules.js?v=20261020c"></script>
 <script>
 (function () {
   'use strict';
@@ -361,12 +364,12 @@
     if (['foundation', 'bachelor', 'master'].indexOf(p.type) >= 0 && c.china_specific) links = links.concat(c.china_specific.sources.slice(0, 1));
     links = links.concat(p.sources || []);
     var seen = {}; links = links.filter(function (s) { if (seen[s.url]) return false; seen[s.url] = 1; return true; }).slice(0, 3);
-    var why = x.reasons.concat(x.goals.slice(0, 2));
     var cost = range(p.annual_cost_cny_wan, ' 万元/年');
     var main = '<div class="card">' +
       '<h3>' + esc(c.name_zh) + ' · ' + esc(p.type_zh) + ' <small>' + esc(p.local_name) + '</small></h3>' +
-      '<ul class="why">' + why.map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ul>' +
-      x.notes.map(function (n) { return '<div class="warn">注意：' + esc(n) + '</div>'; }).join('') +
+      (p.what_is_zh ? '<div class="sec-t">这是什么</div><p class="what">' + esc(p.what_is_zh) + '</p>' : '') +
+      '<div class="sec-t">为什么适合你家孩子</div><ul class="why">' + x.fits.slice(0, 5).map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ul>' +
+      (x.notes.length ? '<div class="sec-t warn-t">要注意</div><ul class="why warn">' + x.notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul>' : '') +
       '<div class="f"><b>大概花费</b>' + esc(cost ? '约 ' + cost : (p.annual_cost_note_zh || '看学校报价')) + '</div>' +
       (p.language_zh ? '<div class="f"><b>语言要求</b>' + esc(p.language_zh) + '</div>' : '') +
       (p.duration_years ? '<div class="f"><b>一般读</b>' + esc(range(p.duration_years, ' 年')) + '</div>' : '') +

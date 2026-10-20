@@ -149,15 +149,16 @@
       if (m.max_age && p.age && p.age > m.max_age) { out.skipped.push({ prog: prog, why: '年龄超过 ' + m.max_age + ' 岁' }); return; }
       if (m.min_age && p.age && p.age < m.min_age) { out.skipped.push({ prog: prog, why: '一般 ' + m.min_age + ' 岁以上才去' }); return; }
 
-      var reasons = [], notes = [];
+      // fits = 为什么适合这个孩子；notes = 要注意的坎
+      var fits = [], notes = [];
       var acc = { route: 'direct', text: '' };
       if (m.access && ACCESS[m.access]) acc = ACCESS[m.access](p);
       if (acc.route === 'none') { out.skipped.push({ prog: prog, why: acc.text || '入学条件不符合' }); return; }
-      if (acc.text) reasons.push(acc.text);
+      if (acc.text) { if (acc.route === 'direct' || acc.route === 'foundation') fits.push(acc.text); else notes.push(acc.text); }
 
       var lc = langCheck(m.lang, p);
       if (lc.st === 'no') { out.skipped.push({ prog: prog, why: lc.text }); return; }
-      if (lc.text) reasons.push(lc.text);
+      if (lc.text) { if (lc.st === 'has') fits.push(lc.text); else notes.push(lc.text); }
 
       var bScore = 2;
       if (m.min_budget != null && budgetMax != null) {
@@ -166,7 +167,9 @@
           return;
         }
         if (budgetMax < m.min_budget + TIGHT_MARGIN) { bScore = 1; notes.push('预算比较紧，最好选免学费的州'); }
+        else if (m.min_budget > 0) fits.push('你填的预算够付学生签证要求的生活费（每年约 ' + m.min_budget + ' 万元）');
       }
+      if (m.min_budget === 0 && prog.type === 'vocational') fits.push('企业按月发培训工资，家里的负担比读大学轻');
 
       if (prog.type === 'k12') {
         if (p.stage === 'junior') notes.push('要读到 9 年级才能申请');
@@ -176,7 +179,12 @@
         notes.push('想读医学、药学、牙医或法律，高考要 80% 以上');
 
       var g = goalScore(country, prog, p);
-      if (p.field === 'skill' && prog.type === 'vocational') g.score += 1;
+      if (p.field === 'skill' && prog.type === 'vocational') { g.score += 1; fits.push('孩子喜欢技术手艺，正好对口'); }
+      if (prog.type === 'vocational' && ['zhongzhi', 'zhuanke2', 'nogaokao_done'].indexOf(p.stage) >= 0) fits.push('走不了德国大学也没关系，企业培训不要求特定学历');
+      if (prog.type === 'master' && p.stage === 'bachelor_done') fits.push('本科毕业有学位，不限专业都能申请');
+      if (prog.type === 'phd') fits.push('已经有硕士学位，可以直接找导师');
+      g.hits.forEach(function (h) { if (fits.indexOf(h) < 0) fits.push(h); });
+      if (!fits.length) fits.push('符合基本入学条件');
 
       var total = (ROUTE_SCORE[acc.route] || 1) + (LANG_SCORE[lc.st] || 1) + bScore + g.score;
       var tier = total >= TIER_GOOD ? 1 : total >= TIER_OK ? 2 : 3;
@@ -187,7 +195,7 @@
           (p.goals || []).indexOf('skill_job') < 0 && p.field !== 'skill' && tier < 2) tier = 2;
 
       out.picks.push({ country: country, prog: prog, tier: tier, score: total, route: acc.route, lang: lc,
-        reasons: reasons, notes: notes, goals: g.hits });
+        fits: fits, notes: notes });
     });
     return out;
   }
