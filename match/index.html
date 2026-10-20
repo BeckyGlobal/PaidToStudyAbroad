@@ -239,10 +239,6 @@
 
   <section id="result" aria-live="polite"></section>
 
-  <details>
-    <summary>这个工具是怎么算的</summary>
-    <p style="font-size:14px;color:var(--muted)">先看硬条件：学历阶段、年龄、语言、预算，任何一条走不通就不推荐，并在“为什么没推荐”里写原因。剩下的按入学路径、语言、预算宽松程度、和你选的目标有多对得上打分，分成三组。入学规则和费用都来自各国政府、使馆、官方留学机构和学校官网，每条结果下面都有原文链接。“和目标对得上”这一项是本工具的判断，仅供参考。</p>
-  </details>
 
   <footer>
     来源只引各国政府、政府机构和使领馆、官方留学机构、法律原文和学校官网。政策每年都改，申请前请照每条的来源链接再查一遍。<br>
@@ -381,6 +377,7 @@
       (after ? '<div class="f"><b>读完以后</b>' + esc(after) + '</div>' : '') +
       '<div class="f"><b>说明</b>' + esc(p.suitable_note_zh) + '</div>' +
       (c.china_specific && c.china_specific.aps_note_zh && ['foundation', 'bachelor', 'master'].indexOf(p.type) >= 0 ? '<div class="f"><b>中国学生</b>' + esc(c.china_specific.aps_note_zh) + '</div>' : '') +
+      (p.research_next ? '<div class="f"><b>下一步研究去哪儿</b></div><ul class="why">' + p.research_next.map(function (r) { return '<li><a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.name) + '</a>：' + esc(r.what_zh) + '</li>'; }).join('') + '</ul>' : '') +
       '<div class="links">官方原文：' + links.map(function (s) { return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.title) + '</a>'; }).join('') + '</div>';
     var h = main + '<details><summary>展开看细节和官方原文</summary>' + more + '</details></div>';
     return h;
