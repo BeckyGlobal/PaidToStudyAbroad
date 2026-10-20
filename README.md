@@ -11,14 +11,12 @@
 
 不用全做：这是一份备选单，不是任务清单。挑一两条够得着的，就算数。
 
-不知道该往哪个国家和地区看？先用 **[留学方向初筛](https://beckyglobal.github.io/PaidToStudyAbroad/match/)** 填几项孩子的情况（年龄、学历、高考分数、英语、预算、目标），看看 42 个发达国家和地区里适合研究哪些、读什么项目。
 
 奖学金和签证政策每年都改，书里的数字可能过时，也可能有错。真去申请时，以各国政府、使领馆和学校的最新官方说法为准。发现写错了，欢迎[提 issue](https://github.com/BeckyGlobal/PaidToStudyAbroad/issues)。
 
 **关注作者：微信视频号「Becky在地球村」**
 
 [![在线检索](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E6%A3%80%E7%B4%A2-%E7%82%B9%E8%BF%99%E9%87%8C%E6%89%93%E5%BC%80-3451b2?style=flat-square)](https://beckyglobal.github.io/PaidToStudyAbroad/)
-[![留学方向初筛](https://img.shields.io/badge/%E7%95%99%E5%AD%A6%E6%96%B9%E5%90%91%E5%88%9D%E7%AD%9B-%E5%85%88%E6%B5%8B%E4%B8%80%E6%B5%8B-c98a10?style=flat-square)](https://beckyglobal.github.io/PaidToStudyAbroad/match/)
 [![条目](https://img.shields.io/badge/%E6%9D%A1%E7%9B%AE-71%20%E6%9D%A1-18794e?style=flat-square)](#目录)
 [![证据分级](https://img.shields.io/badge/%E8%AF%81%E6%8D%AE%E5%88%86%E7%BA%A7-A%2050%20%C2%B7%20B%2021-915930?style=flat-square)](#证据分级)
 [![官方链接](https://img.shields.io/badge/%E5%AE%98%E6%96%B9%E9%93%BE%E6%8E%A5-326%20%E6%9D%A1-565a5f?style=flat-square)](docs/核实记录/)
