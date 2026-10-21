@@ -11,12 +11,15 @@
 
 不用全做：这是一份备选单，不是任务清单。挑一两条够得着的，就算数。
 
+不知道往哪里看？先用 **[快速自测留学方向](https://beckyglobal.github.io/PaidToStudyAbroad/match/)**：填一共能拿出多少钱、想去哪里、最高学历，看 17 个国家和地区能走哪些路线（职业教育、大专、本科、硕士、博士），按留学生真实花费算钱够不够、差多少，以及毕业后能留多久找工作。
+
 
 奖学金和签证政策每年都改，书里的数字可能过时，也可能有错。真去申请时，以各国政府、使领馆和学校的最新官方说法为准。发现写错了，欢迎[提 issue](https://github.com/BeckyGlobal/PaidToStudyAbroad/issues)。
 
 **关注作者：微信视频号「Becky在地球村」**
 
 [![在线检索](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E6%A3%80%E7%B4%A2-%E7%82%B9%E8%BF%99%E9%87%8C%E6%89%93%E5%BC%80-3451b2?style=flat-square)](https://beckyglobal.github.io/PaidToStudyAbroad/)
+[![快速自测留学方向](https://img.shields.io/badge/%E5%BF%AB%E9%80%9F%E8%87%AA%E6%B5%8B%E7%95%99%E5%AD%A6%E6%96%B9%E5%90%91-%E5%85%88%E6%B5%8B%E4%B8%80%E6%B5%8B-c98a10?style=flat-square)](https://beckyglobal.github.io/PaidToStudyAbroad/match/)
 [![条目](https://img.shields.io/badge/%E6%9D%A1%E7%9B%AE-71%20%E6%9D%A1-18794e?style=flat-square)](#目录)
 [![证据分级](https://img.shields.io/badge/%E8%AF%81%E6%8D%AE%E5%88%86%E7%BA%A7-A%2050%20%C2%B7%20B%2021-915930?style=flat-square)](#证据分级)
 [![官方链接](https://img.shields.io/badge/%E5%AE%98%E6%96%B9%E9%93%BE%E6%8E%A5-326%20%E6%9D%A1-565a5f?style=flat-square)](docs/核实记录/)
