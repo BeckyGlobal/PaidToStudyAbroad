@@ -67,6 +67,20 @@
   .card h3 .place{display:inline-block;margin-right:6px;padding:1px 8px;border-radius:999px;background:var(--accent);color:#fff;font-size:13px;vertical-align:2px}
   details.more{margin:6px 0 14px}
   details.more>summary{cursor:pointer;color:var(--accent);font-size:15px;padding:8px 0}
+  .hero{margin:26px 0 10px;padding:22px 18px 18px;border-radius:18px;background:var(--gold-bg);border:2px solid var(--gold);text-align:center}
+  .hero-k{font-size:15px;color:var(--muted);font-weight:600}
+  .hero-n{font-size:22px;font-weight:800;color:var(--ink);margin:6px 0 2px;line-height:1.2}
+  .hero-n .nw{white-space:nowrap;display:inline-block}
+  .hero-n .big{font-size:58px;color:var(--gold);margin:0 4px;vertical-align:-6px;letter-spacing:-1px}
+  @media (max-width:375px){.hero-n .sep{display:none}.hero-n .nw{display:block}}
+  .hero-n .sep{margin:0 8px;color:var(--muted);font-weight:400}
+  .hero-t{font-size:18px;font-weight:700;color:var(--accent);margin:4px 0 12px}
+  .hero-types{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .hero-types a{padding:6px 12px;border-radius:999px;background:var(--panel);border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:15px}
+  .hero-types a b{color:var(--gold);font-size:17px;margin-left:2px}
+  .hero-s{margin-top:12px;font-size:13px;color:var(--muted)}
+  .type-h{margin:34px 0 10px;font-size:24px;display:flex;align-items:baseline;gap:10px;border-bottom:3px solid var(--gold);padding-bottom:6px;scroll-margin-top:12px}
+  .type-h .cnt{font-size:16px;color:var(--gold);font-weight:700}
   .chip-sub{width:100%;font-size:13px;color:var(--muted);margin:8px 0 0}
   .nogk{display:inline-flex;align-items:center;gap:6px;font-size:14px}
   input[type=number],select{font:inherit;font-size:16px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);width:7.5em}
@@ -324,6 +338,7 @@
   }
 
   // 学历：页面选项对应到数据里的学历阶段（职高、中专都按中职算；博士按研究生毕业算）
+  var STAGE_LABEL = { junior_done: '初中', senior_done: '高中', zhigao: '职高', zhongzhuan: '中专', zhuanke3_done: '大专', bachelor_done: '本科', master_done: '硕士', phd_done: '博士' };
   var STAGE_MAP = { zhigao: 'zhongzhi', zhongzhuan: 'zhongzhi', phd_done: 'master_done' };
   function profile() {
     function num(id) { var v = parseFloat($(id).value); return isNaN(v) ? null : v; }
@@ -391,7 +406,6 @@
   function disclaimer(checked) { return '<div class="disclaimer"><b>免责声明</b>这只是初步方向参考，不是留学、移民、法律或财务建议，不预测录取，也不保证签证、工作或移民。花费按官方公布的留学生学费和生活费估算，区间低的一头是较便宜的学校和城市，高的一头是一般水平，不含顶尖私立名校；实际花费看学校、城市和专业。「毕业后能留多久找工作」只是签证规定给的时间，不代表能找到工作，国际学生找工作往往比本地人难。政策和费用随时会变，申请前请以各国政府和学校的官方最新信息为准。数据核实时间：' + esc(checked) + '。</div>'; }
   // 都看看：所有地方里按你的学历能走、钱够得上或差得不多的路线，按路线类型分组，每类先列最省钱的 3 个地方
   var NEAR = 5;   // 【可调】还差多少万以内算“差得不多”
-  var TOPN = 2;   // 【可调】每类先显示几个地方，其余点“展开”（总共不超过 6 条时全部显示）
   var TYPE_NAME = { vocational: '职业教育', associate: '大专', bachelor: '本科', master: '硕士', phd: '博士' };
   function showAll(budget, prof) {
     var by = {}, checked = '', total = 0;
@@ -409,22 +423,27 @@
     });
     // 学历高的先看研究生，其他人先看职业教育、大专、本科
     var grad = prof.stage === 'bachelor_done' || prof.stage === 'master_done';
-    var order = grad ? ['master', 'phd'] : ['vocational', 'associate', 'bachelor', 'master', 'phd'];
-    var others = grad ? ['bachelor', 'associate', 'vocational'].filter(function (t) { return by[t]; }) : [];
-    var topn = total <= 6 ? 99 : TOPN;
-    var html = '<h2 class="res-h">' + esc(wan(budget)) + ' 万元能去哪</h2>';
-    html += '<p class="res-sum">' + (total ? '按你的学历，所有地方里钱够得上、或者还差 ' + NEAR + ' 万以内的路线共 ' + total + ' 条。按路线类型分开，每类先列自己要掏钱最少的 ' + TOPN + ' 个地方。想看某个地方的全部路线，回到第 2 题选那个地方。' : '按你的学历和预算，暂时没有钱够得上的路线。可以回到第 2 题选一个地方，看看还差多少。') + '</p>';
+    var order = grad ? ['master', 'phd', 'bachelor', 'associate', 'vocational'] : ['vocational', 'associate', 'bachelor', 'master', 'phd'];
+    var places = {}, nFit = 0, nPart = 0, nNear = 0;
+    order.forEach(function (ty) { (by[ty] || []).forEach(function (it) { places[it.c.id] = 1; if (it.t === 2) nFit++; else if (it.t === 1) nPart++; else nNear++; }); });
+    var nPlaces = Object.keys(places).length;
+    var html = '';
+    if (total) {
+      html += '<div class="hero"><div class="hero-k">' + esc(wan(budget)) + ' 万元 · ' + esc(STAGE_LABEL[state.stage] || '') + '</div>' +
+        '<div class="hero-n"><span class="nw"><span class="big">' + total + '</span>条路线</span><span class="sep">·</span><span class="nw"><span class="big">' + nPlaces + '</span>个地方</span></div>' +
+        '<div class="hero-t">你能走的路，比你以为的多</div>' +
+        '<div class="hero-types">' + order.filter(function (ty) { return by[ty]; }).map(function (ty) { return '<a href="#ty-' + ty + '">' + TYPE_NAME[ty] + ' <b>' + by[ty].length + '</b></a>'; }).join('') + '</div>' +
+        '<div class="hero-s">' + [nFit ? '钱够的 ' + nFit + ' 条' : '', nPart ? '只够较便宜的学校或城市 ' + nPart + ' 条' : '', nNear ? '还差 ' + NEAR + ' 万以内 ' + nNear + ' 条' : ''].filter(Boolean).join(' · ') + '</div></div>';
+      html += '<p class="res-sum">按自己要掏的钱从少到多排，下面全部列出来了。想看某个地方的全部路线（包括钱还差得多的），回到第 2 题选那个地方。</p>';
+    } else {
+      html += '<h2 class="res-h">' + esc(wan(budget)) + ' 万元能去哪</h2><p class="res-sum">按你的学历和预算，暂时没有钱够得上的路线。可以回到第 2 题选一个地方，看看还差多少。</p>';
+    }
     order.forEach(function (ty) {
       var list = by[ty]; if (!list) return;
       list.sort(function (a, b) { return (b.t - a.t) || (a.lo - b.lo); });
-      html += '<h3 class="tier-h t1"><span class="dot"></span>' + TYPE_NAME[ty] + '：' + list.length + ' 个地方</h3>';
-      html += list.slice(0, topn).map(function (it) { return card(it.c, it.p, budget, it.ed, true); }).join('');
-      if (list.length > topn) html += '<details class="more"><summary>再看 ' + (list.length - topn) + ' 个地方：' + esc(list.slice(topn).map(function (it) { return it.c.name_zh; }).join('、')) + '</summary>' + list.slice(topn).map(function (it) { return card(it.c, it.p, budget, it.ed, true); }).join('') + '</details>';
+      html += '<h3 class="type-h" id="ty-' + ty + '">' + TYPE_NAME[ty] + '<span class="cnt">' + list.length + ' 个地方</span></h3>';
+      html += list.map(function (it) { return card(it.c, it.p, budget, it.ed, true); }).join('');
     });
-    if (others.length) {
-      var rest = []; others.forEach(function (t) { by[t].sort(function (a, b) { return (b.t - a.t) || (a.lo - b.lo); }); rest = rest.concat(by[t]); });
-      html += '<details class="more"><summary>你已经有' + (prof.stage === 'master_done' ? '硕士' : '本科') + '学历，也可以看看其他路线（' + others.map(function (t) { return TYPE_NAME[t]; }).join('、') + '，共 ' + rest.length + ' 条）</summary>' + rest.map(function (it) { return card(it.c, it.p, budget, it.ed, true); }).join('') + '</details>';
-    }
     html += disclaimer(checked);
     html += '<button class="again" type="button" id="again">换个预算或地方再看</button>';
     var r = $('result'); r.innerHTML = html; r.style.display = 'block';
@@ -457,7 +476,7 @@
     });
     function byCost(a, b) { return lowTotal(c, a) - lowTotal(c, b); }
     fit.sort(byCost); partial.sort(byCost); over.sort(byCost);
-    var html = '<h2 class="res-h">' + esc(wan(budget)) + ' 万元去' + esc(c.name_zh) + '</h2>';
+    var html = (fit.length + partial.length) ? '<div class="hero"><div class="hero-k">' + esc(wan(budget)) + ' 万元去' + esc(c.name_zh) + ' · ' + esc(STAGE_LABEL[state.stage] || '') + '</div><div class="hero-n"><span class="big">' + (fit.length + partial.length) + '</span> 条路线钱够得上</div><div class="hero-s">钱够的 ' + fit.length + ' 条 · 只够较便宜的学校或城市 ' + partial.length + ' 条' + (over.length ? ' · 还差钱的 ' + over.length + ' 条' : '') + '</div><div class="hero-s">没想好去哪？第 2 题选「都看看」，一次看所有地方。</div></div>' : '<h2 class="res-h">' + esc(wan(budget)) + ' 万元去' + esc(c.name_zh) + '</h2>';
     if (fit.length || partial.length || over.length) html += '<p class="res-sum">按你的学历能走的路线，按留学生实际要花的钱算：' + [fit.length ? '钱够的 ' + fit.length + ' 条' : '', partial.length ? '只够较便宜学校或城市的 ' + partial.length + ' 条' : '', over.length ? '还差钱的 ' + over.length + ' 条' : ''].filter(Boolean).join('，') +
       '。每条都列了要什么条件，对照看看自己够不够。</p>';
     if (c.costs && c.costs.living) html += '<p class="res-sum">在' + esc(c.name_zh) + '光生活费，一年一般约 ' + esc(range(c.costs.living.annual_cny_wan, ' 万元')) + '。</p>';
